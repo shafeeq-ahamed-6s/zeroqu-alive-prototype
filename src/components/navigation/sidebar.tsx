@@ -17,7 +17,6 @@ import {
     SidebarRail,
 } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import ThemeToggle from "@/components/theme/theme-toggle";
 import { useNavigate } from "react-router";
 
 type NavMainItem = {
@@ -43,7 +42,7 @@ export default function SideBar({
     const navigate = useNavigate();
 
     return (
-        <Sidebar variant="floating" collapsible="icon" {...props}>
+        <Sidebar variant="sidebar" collapsible="icon" {...props}>
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
@@ -57,7 +56,7 @@ export default function SideBar({
                                     <img
                                         src={data?.brand?.imgSrc}
                                         alt={data?.brand?.imgAlt}
-                                        className="w-8 h-8 ml-2"
+                                        className="w-8 h-8 ml-2 brightness-75"
                                     />
                                 </div>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
@@ -117,9 +116,7 @@ export default function SideBar({
                     </SidebarMenu>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter className="flex items-center justify-center">
-                <ThemeToggle />
-            </SidebarFooter>
+            <SidebarFooter className="flex items-center justify-center"></SidebarFooter>
             <SidebarRail />
         </Sidebar>
     );

@@ -10,7 +10,7 @@ const booleanFromString = z
 const rawEnvSchema = z.object({
     // Vite environment variables (prefixed with VITE_)
     VITE_API_BASE_URL: z.string().url().default("http://localhost:3000"),
-    VITE_APP_NAME: z.string().default("DewDrop Pilot MVP"),
+    VITE_APP_NAME: z.string().default("Zeroqu Prototype"),
     VITE_APP_VERSION: z.string().optional(),
     VITE_ENVIRONMENT: z.enum(["development", "staging", "production"]).default("development"),
     VITE_LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),

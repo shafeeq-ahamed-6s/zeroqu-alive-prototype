@@ -16,9 +16,10 @@ import GradientBorder from "./ui/gradient-border";
 
 export interface AskAIButtonProps {
     onAskAI?: () => void;
+    className?: string;
 }
 
-export default function AskAI({ onAskAI }: AskAIButtonProps) {
+export default function AskAI({ onAskAI, className }: AskAIButtonProps) {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
@@ -44,10 +45,15 @@ export default function AskAI({ onAskAI }: AskAIButtonProps) {
             <GradientBorder
                 borderRadius="0.5rem"
                 animationDuration="3s"
-                className="w-60"
+                className={cn(className)}
                 onClick={handleAskAI}
             >
-                <Button variant="outline" className={cn("w-full")}>
+                <Button
+                    variant="outline"
+                    className={cn(
+                        "w-full flex-1 bg-transparent text-card-foreground placeholder:text-muted-foreground focus:outline-none"
+                    )}
+                >
                     <Sparkles className="h-4 w-4" />
                     <span>Ask DewDrop</span>
                     <CommandShortcut>⌘K</CommandShortcut>

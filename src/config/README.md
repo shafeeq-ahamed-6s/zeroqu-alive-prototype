@@ -1,6 +1,6 @@
 # Configuration Directory
 
-This directory contains all application configuration, environment setup, and feature flags for the DewDrop Pilot MVP.
+This directory contains all application configuration, environment setup, and feature flags for the Zeroqu Prototype.
 
 ## Purpose
 

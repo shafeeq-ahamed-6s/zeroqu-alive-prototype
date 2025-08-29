@@ -1,6 +1,6 @@
-# DewDrop Pilot MVP Frontend
+# Zeroqu Prototype Frontend
 
-A modern React frontend application for the DewDrop pilot MVP, built with TypeScript, Vite, and Tailwind CSS.
+A modern React frontend application for the Zeroqu Prototype, built with TypeScript, Vite, and Tailwind CSS.
 
 ## 🚀 Tech Stack
 
@@ -47,7 +47,7 @@ src/
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd dewdrop-pilot-mvp-fe
+cd zeroqu-prototype
 ```
 
 2. Install dependencies:
@@ -110,4 +110,4 @@ This project is private and proprietary.
 
 ---
 
-Built with ❤️ for the DewDrop MVP
+Built with ❤️ for the Zeroqu Prototype

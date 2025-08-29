@@ -9,8 +9,10 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import AskAI from "@/components/ask-ai-button";
 import Profile from "@/components/ui/profile";
+import ThemeToggle from "@/components/theme/theme-toggle";
+import { Notifications } from "../notifications";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 
 export interface AppTopbarProps {
     breadcrumbs?: {
@@ -18,10 +20,9 @@ export interface AppTopbarProps {
         href?: string;
         isCurrentPage?: boolean;
     }[];
-    onAskAI?: () => void;
 }
 
-export default function TopBar({ breadcrumbs, onAskAI }: AppTopbarProps) {
+export default function TopBar({ breadcrumbs }: AppTopbarProps) {
     // Profile actions are now handled in the Profile component
 
     return (
@@ -33,14 +34,23 @@ export default function TopBar({ breadcrumbs, onAskAI }: AppTopbarProps) {
             group-has-data-[collapsible=icon]/sidebar-wrapper:h-16"
         >
             <div className="flex items-center gap-2 px-4 flex-1">
-                <SidebarTrigger className="-ml-1" />
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <SidebarTrigger className="-ml-1" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Open Sidebar</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
                 <Separator
                     orientation="vertical"
                     className="mr-2 data-[orientation=vertical]:h-4"
                 />
                 {breadcrumbs && breadcrumbs.length > 0 && (
                     <Breadcrumb>
-                        <BreadcrumbList>
+                        <BreadcrumbList className="text-lg">
                             {breadcrumbs.map((item, index) => (
                                 <React.Fragment key={index}>
                                     <BreadcrumbItem>
@@ -62,10 +72,8 @@ export default function TopBar({ breadcrumbs, onAskAI }: AppTopbarProps) {
 
             {/* Right side with Ask AI button and Profile */}
             <div className="flex items-center gap-4 px-4">
-                {/* Ask AI Button */}
-                <div>
-                    <AskAI onAskAI={onAskAI} />
-                </div>
+                <Notifications />
+                <ThemeToggle />
                 <Profile />
             </div>
         </header>

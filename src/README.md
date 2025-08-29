@@ -1,6 +1,6 @@
 # Source Directory (src)
 
-This is the main source directory containing all the application code for the DewDrop Pilot MVP frontend.
+This is the main source directory containing all the application code for the Zeroqu Prototype.
 
 ## Structure Overview
 

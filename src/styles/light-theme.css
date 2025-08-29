@@ -4,31 +4,29 @@
     --radius: 0.625rem;
 
     /* === Base Colors === */
-    --primary: #dedede;
-    --primary-foreground: var(--black);
-
-    --secondary: #a879c6;
-    --secondary-foreground: var(--white);
+    --primary: #1d9de4;
+    --primary-foreground: #ffffff;
+    --secondary: #69c497;
+    --secondary-foreground: #1a2639;
 
     --tertiary: #cc6bc4;
     --tertiary-foreground: var(--white);
 
-    --muted: #d8d8d8;
-    --muted-foreground: var(--black);
+    --muted: #d4efe1;
+    --muted-foreground: #536685;
+    --accent: #c4e8d7;
+    --accent-foreground: #1a2639; /* === Message Colors === */
+    --destructive: #f03e3e;
+    --destructive-foreground: #ffffff;
 
-    --accent: #766dc4;
-    --accent-foreground: #e5e5e5;
-
-    /* === Message Colors === */
-    --destructive: #c64242;
     --warning: #e5b265;
     --info: #4c95d4;
     --success: #3f9b3f;
 
     /* === Borders, Inputs, and Rings === */
-    --border: #e4e4e7;
-    --input: #e4e4e7;
-    --ring: #007bce;
+    --border: #b9e0ca;
+    --input: #b9e0ca;
+    --ring: #1d9de4;
 
     /* === Chart Colors === */
     --chart-1: #a879c6;
@@ -38,12 +36,14 @@
     --chart-5: #5dabbc;
 
     /* Background and foreground for the main UI */
-    --background: #f0f3f8;
-    --foreground: var(--black);
+    --background: #d3e7fa;
+    --foreground: #1a2639;
 
     /* === Card & Popover Surfaces === */
-    --card: var(--primary);
-    --card-foreground: var(--primary-foreground);
+    --card: #ffffff;
+    --card-foreground: #1a2639;
+    --popover: #ffffff;
+    --popover-foreground: #1a2639;
 
     --popover: var(--primary);
     --popover-foreground: var(--primary-foreground);

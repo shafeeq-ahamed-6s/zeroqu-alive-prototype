@@ -35,6 +35,7 @@
 @import "./light-theme.css";
 @import "./dark-theme.css";
 @import "./gradient-run.css";
+@import "./animation.css";
 
 @layer base {
     * {

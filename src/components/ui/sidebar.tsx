@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
+import { ShipWheel } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -282,23 +282,44 @@ function Sidebar({
 
 function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<typeof Button>) {
     const { toggleSidebar } = useSidebar();
+    const [isRotating, setIsRotating] = React.useState(false);
+    const [isHovering, setIsHovering] = React.useState(false);
+
+    // Add the animation to rotate the wheel
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        onClick?.(event);
+        setIsRotating(true);
+        toggleSidebar();
+
+        // Reset the animation after it completes
+        setTimeout(() => {
+            setIsRotating(false);
+        }, 500); // Animation duration is 500ms
+    };
+
+    // Handle hover events
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
 
     return (
-        <Button
-            data-sidebar="trigger"
-            data-slot="sidebar-trigger"
-            variant="ghost"
-            size="icon"
-            className={cn("size-7", className)}
-            onClick={event => {
-                onClick?.(event);
-                toggleSidebar();
-            }}
+        <button
+            className={cn(
+                "p-2  shadow-xs hover:text-accent-foreground  dark:border-input dark:hover:bg-input/50 hover:bg-primary inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-7 shrink-0 [&_svg]:shrink-0",
+                className
+            )}
+            onClick={handleClick}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             {...props}
         >
-            <PanelLeftIcon />
+            <ShipWheel
+                size={28}
+                className={
+                    isRotating ? "animate-spin-slow" : isHovering ? "animate-rock-gentle" : ""
+                }
+            />
             <span className="sr-only">Toggle Sidebar</span>
-        </Button>
+        </button>
     );
 }
 

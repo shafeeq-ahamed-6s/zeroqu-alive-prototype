@@ -7,7 +7,7 @@ import router from "./routes/routes.tsx";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <ThemeProvider defaultTheme="dark" storageKey="dewdrop-ui-theme">
+        <ThemeProvider defaultTheme="dark" storageKey="zeroqu-ui-theme">
             <RouterProvider router={router} />
         </ThemeProvider>
     </StrictMode>

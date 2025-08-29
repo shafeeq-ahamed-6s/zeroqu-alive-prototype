@@ -12,7 +12,7 @@ type ThemeProviderProps = {
 export function ThemeProvider({
     children,
     defaultTheme = "system",
-    storageKey = "dewdrop-ui-theme",
+    storageKey = "zeroqu-ui-theme",
     ...props
 }: ThemeProviderProps) {
     const [theme, setTheme] = useState<Theme>(

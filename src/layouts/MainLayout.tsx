@@ -3,9 +3,10 @@ import SideBar from "@/components/navigation/sidebar";
 import TopBar from "@/components/navigation/topbar";
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Shield, Users, Wrench, UserCheck, ShoppingCart, Settings2 } from "lucide-react";
+import { ChartLine, Settings2, Compass, Target } from "lucide-react";
 import { Outlet } from "react-router";
-import DewDropSmall from "@/assets/dewdropSmall.png";
+import ZeroquLogo from "@/assets/ZeroquLogo.png";
+import { Chatbot } from "@/components/chatbot/chatbot";
 
 export interface BreadcrumbItem {
     title: string;
@@ -33,7 +34,6 @@ export interface MainLayoutProps {
 
 export default function MainLayout({
     breadcrumbs: propBreadcrumbs,
-    onAskAI,
     sidebarDefaultOpen = false,
     enableSidebarHovering = false,
     className,
@@ -45,98 +45,79 @@ export default function MainLayout({
     const data = {
         navMain: [
             {
-                title: "Governance",
-                url: "/coming-soon",
-                icon: Shield,
+                title: "Fleet 360",
+                url: "/",
+                icon: Compass,
                 isActive: true,
+                items: [], // Add empty items array
+            },
+            {
+                title: "Fleet Performance Analytics",
+                url: "/performance",
+                icon: ChartLine,
                 items: [
                     {
-                        title: "Policies",
-                        url: "/coming-soon",
+                        title: "Overview",
+                        url: "/performance/overview",
                     },
                     {
-                        title: "Compliance",
-                        url: "/coming-soon",
+                        title: "Energy Management",
+                        url: "/performance/energy-management",
                     },
                     {
-                        title: "Risk Management",
-                        url: "/coming-soon",
+                        title: "Propulsion",
+                        url: "/performance/propulsion",
+                    },
+                    {
+                        title: "Aux Engines",
+                        url: "/performance/aux-engines",
+                    },
+                    {
+                        title: "Boiler",
+                        url: "/performance/boiler",
+                    },
+                    {
+                        title: "Basic Load",
+                        url: "/performance/basic-load",
+                    },
+                    {
+                        title: "CP Performance",
+                        url: "/performance/cp-performance",
+                    },
+                    {
+                        title: "Warning & Triggers",
+                        url: "/performance/warning-triggers",
                     },
                 ],
             },
             {
-                title: "Advisory",
-                url: "/coming-soon",
-                icon: Users,
+                title: "Fleet Emissions",
+                url: "/emissions",
+                icon: Target,
                 items: [
                     {
-                        title: "Consultants",
-                        url: "/coming-soon",
+                        title: "Overview",
+                        url: "/emissions/overview",
                     },
                     {
-                        title: "Expert Network",
-                        url: "/coming-soon",
+                        title: "Vessel",
+                        url: "/emissions/vessel",
                     },
                     {
-                        title: "Strategy",
-                        url: "/coming-soon",
-                    },
-                ],
-            },
-            {
-                title: "Implementation",
-                url: "/coming-soon",
-                icon: Wrench,
-                items: [
-                    {
-                        title: "Projects",
-                        url: "/coming-soon",
+                        title: "CII Analytics",
+                        url: "/emissions/cii-analytics",
                     },
                     {
-                        title: "Workflows",
-                        url: "/coming-soon",
+                        title: "EU Emission",
+                        url: "/emissions/eu-emission",
                     },
                     {
-                        title: "Deployment",
-                        url: "/coming-soon",
-                    },
-                ],
-            },
-            {
-                title: "Talent",
-                url: "/coming-soon",
-                icon: UserCheck,
-                items: [
-                    {
-                        title: "Recruitment",
-                        url: "/coming-soon",
+                        title: "Emission Calculator",
+                        url: "/emissions/emission-calculator",
                     },
                     {
-                        title: "Team Management",
-                        url: "/coming-soon",
-                    },
-                    {
-                        title: "Performance",
-                        url: "/coming-soon",
-                    },
-                ],
-            },
-            {
-                title: "Marketplace",
-                url: "/coming-soon",
-                icon: ShoppingCart,
-                items: [
-                    {
-                        title: "Services",
-                        url: "/coming-soon",
-                    },
-                    {
-                        title: "Solutions",
-                        url: "/coming-soon",
-                    },
-                    {
-                        title: "Partners",
-                        url: "/coming-soon",
+                        title: "Reports",
+                        url: "/emissions/reports",
                     },
                 ],
             },
@@ -166,10 +147,10 @@ export default function MainLayout({
         ],
         brand: {
             href: "/",
-            imgSrc: DewDropSmall,
-            imgAlt: "DewDrop Logo",
-            title: "DewDrop",
-            subtitle: "Pilot MVP",
+            imgSrc: ZeroquLogo,
+            imgAlt: "Zeroqu Logo",
+            title: "Zeroqu",
+            subtitle: "Prototype",
         },
     };
 
@@ -177,12 +158,13 @@ export default function MainLayout({
         <SidebarProvider defaultOpen={sidebarDefaultOpen} enableHovering={enableSidebarHovering}>
             <SideBar data={data} />
             <SidebarInset className={className}>
-                <TopBar breadcrumbs={breadcrumbs} onAskAI={onAskAI} />
+                <TopBar breadcrumbs={breadcrumbs} />
 
                 {/* Main content area */}
                 <main className="flex-1 overflow-auto">
                     <Outlet />
                 </main>
+                <Chatbot />
             </SidebarInset>
         </SidebarProvider>
     );
