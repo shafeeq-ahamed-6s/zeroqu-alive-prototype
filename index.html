@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/logos/6s-s.png"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles/index.css" />
+    <title>DewDrop Demo</title>
+    <script>
+      // This script runs immediately before any rendering to prevent flash of light mode
+      (function() {
+        const savedTheme = localStorage.getItem('dewdrop-ui-theme');
+        if (savedTheme === 'dark' || 
+            (savedTheme === 'system' && 
+             window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

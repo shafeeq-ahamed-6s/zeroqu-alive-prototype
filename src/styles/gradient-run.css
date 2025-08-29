@@ -1,0 +1,59 @@
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+@keyframes gradient-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.gradient-border {
+    position: relative;
+}
+
+.gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--gradient-border-radius, 0.75rem);
+    padding: var(--gradient-border-width, 2px);
+    background: linear-gradient(
+        90deg,
+        #da789b,
+        #cb44a8,
+        #4567a4,
+        #00a1d0,
+        #da789b,
+        #cb44a8,
+        #4567a4,
+        #00a1d0
+    );
+    background-size: 200% 200%;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: gradient-flow var(--gradient-animation-duration, 3s) linear infinite;
+}

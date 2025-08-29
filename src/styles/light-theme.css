@@ -1,0 +1,60 @@
+/* === Colors - Light Theme === */
+
+:root {
+    --radius: 0.625rem;
+
+    /* === Base Colors === */
+    --primary: #dedede;
+    --primary-foreground: var(--black);
+
+    --secondary: #a879c6;
+    --secondary-foreground: var(--white);
+
+    --tertiary: #cc6bc4;
+    --tertiary-foreground: var(--white);
+
+    --muted: #d8d8d8;
+    --muted-foreground: var(--black);
+
+    --accent: #766dc4;
+    --accent-foreground: #e5e5e5;
+
+    /* === Message Colors === */
+    --destructive: #c64242;
+    --warning: #e5b265;
+    --info: #4c95d4;
+    --success: #3f9b3f;
+
+    /* === Borders, Inputs, and Rings === */
+    --border: #e4e4e7;
+    --input: #e4e4e7;
+    --ring: #007bce;
+
+    /* === Chart Colors === */
+    --chart-1: #a879c6;
+    --chart-2: #975fc4;
+    --chart-3: #4f6aaf;
+    --chart-4: #5551af;
+    --chart-5: #5dabbc;
+
+    /* Background and foreground for the main UI */
+    --background: #f0f3f8;
+    --foreground: var(--black);
+
+    /* === Card & Popover Surfaces === */
+    --card: var(--primary);
+    --card-foreground: var(--primary-foreground);
+
+    --popover: var(--primary);
+    --popover-foreground: var(--primary-foreground);
+
+    /* === Sidebar Colors === */
+    --sidebar: var(--primary);
+    --sidebar-foreground: var(--primary-foreground);
+    --sidebar-primary: var(--secondary);
+    --sidebar-primary-foreground: var(--secondary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: var(--tertiary);
+    --sidebar-ring: var(--muted);
+}

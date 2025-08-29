@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Color aliases for common colors */
+:root {
+    --black: #333333;
+    --white: #fafafa;
+
+    /* Base colors */
+    --sky-blue: #00c4ff;
+    --rose-pink: #ff92b5;
+    --deep-pink: #e555c5;
+    --deep-blue: #5577cc;
+
+    /* RGB values for use with rgba() */
+    --sky-blue-rgb: 0, 196, 255;
+    --rose-pink-rgb: 255, 146, 181;
+    --deep-pink-rgb: 229, 85, 197;
+    --deep-blue-rgb: 85, 119, 204;
+
+    /* Gradient configuration variables */
+    --gradient-animation-duration: 3s;
+    --gradient-animation-duration-hover: 2s;
+    --gradient-modal-duration: 3s;
+    --gradient-glow-opacity: 0.8;
+    --gradient-modal-opacity: 0.8;
+    --gradient-glow-alpha: 0.3;
+    --gradient-glow-inset: -2px;
+    --gradient-blur-small: 1px;
+    --gradient-blur-medium: 2px;
+    --gradient-blur-large: 8px;
+}
+
+@import "./variables.css";
+@import "./light-theme.css";
+@import "./dark-theme.css";
+@import "./gradient-run.css";
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Custom scrollbar styling that follows theme */
+:root {
+    --scrollbar-thumb: var(--border);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+}
