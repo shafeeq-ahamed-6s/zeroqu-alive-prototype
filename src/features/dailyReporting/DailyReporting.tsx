@@ -45,11 +45,19 @@ export default function DailyReporting() {
             </div>
 
             <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
-                    <TabsTrigger value="overview">Overview</TabsTrigger>
-                    <TabsTrigger value="voyages">Voyages</TabsTrigger>
-                    <TabsTrigger value="daily-reporting">Daily Reporting</TabsTrigger>
-                    <TabsTrigger value="logs">Anomalies & Logs</TabsTrigger>
+                <TabsList className="grid w-full grid-cols-4 h-13">
+                    <TabsTrigger className="h-10 rounded-l ml-1" value="overview">
+                        Overview
+                    </TabsTrigger>
+                    <TabsTrigger className="h-10 rounded-l" value="voyages">
+                        Voyages
+                    </TabsTrigger>
+                    <TabsTrigger className="h-10 rounded-l" value="daily-reporting">
+                        Daily Reporting
+                    </TabsTrigger>
+                    <TabsTrigger className="h-10 rounded-l mr-1" value="logs">
+                        Anomalies & Logs
+                    </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="overview" className="mt-6">
