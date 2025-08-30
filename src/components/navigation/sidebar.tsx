@@ -56,7 +56,7 @@ export default function SideBar({
                                     <img
                                         src={data?.brand?.imgSrc}
                                         alt={data?.brand?.imgAlt}
-                                        className="w-8 h-8 ml-2 brightness-75"
+                                        className="w-8 h-8 ml-2"
                                     />
                                 </div>
                                 <div className="grid flex-1 text-left text-sm leading-tight">

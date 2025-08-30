@@ -303,7 +303,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
 
     return (
         <Button
-            className={cn("p-2 shadow-xs [&_svg:not([class*='size-'])]:size-7", className)}
+            className={cn("p-2 [&_svg:not([class*='size-'])]:size-7", className)}
             onClick={handleClick}
             variant={"ghost"}
             onMouseEnter={handleMouseEnter}
