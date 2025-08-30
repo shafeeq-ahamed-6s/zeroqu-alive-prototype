@@ -3,6 +3,7 @@ import MainLayout from "@/layouts/MainLayout";
 import NotFound from "@/pages/NotFound";
 import ComingSoonPage from "@/pages/ComingSoonPage";
 import Dashboard from "@/features/homepage/Dashboard";
+import DailyReporting from "@/features/dailyReporting/DailyReporting";
 
 const routes = [
     {
@@ -37,8 +38,8 @@ const routes = [
                 children: [
                     { path: "*", element: <NotFound /> },
                     {
-                        path: "daily-reporting",
-                        element: <ComingSoonPage featureName="Daily Reporting" />,
+                        path: "voyage-management",
+                        element: <DailyReporting />,
                     },
                     {
                         index: true,

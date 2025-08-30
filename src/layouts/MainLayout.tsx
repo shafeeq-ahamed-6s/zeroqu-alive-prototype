@@ -53,12 +53,16 @@ export default function MainLayout({
             },
             {
                 title: "Fleet Performance Analytics",
-                url: "/performance",
+                url: "/performance/voyage-management",
                 icon: ChartLine,
                 items: [
                     {
                         title: "Overview",
                         url: "/performance/overview",
+                    },
+                    {
+                        title: "Voyage Management",
+                        url: "/performance/voyage-management",
                     },
                     {
                         title: "Energy Management",
