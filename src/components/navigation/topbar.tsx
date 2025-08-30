@@ -36,7 +36,7 @@ export default function TopBar({ breadcrumbs }: AppTopbarProps) {
             <div className="flex items-center gap-2 px-4 flex-1">
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger>
+                        <TooltipTrigger asChild>
                             <SidebarTrigger className="-ml-1" />
                         </TooltipTrigger>
                         <TooltipContent>

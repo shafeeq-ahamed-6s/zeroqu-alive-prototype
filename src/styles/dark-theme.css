@@ -47,8 +47,8 @@
     --popover-foreground: #b9e0ca;
 
     /* === Sidebar Colors === */
-    --sidebar: #87d5aa;
-    --sidebar-foreground: var(--secondary);
+    --sidebar: #132f20;
+    --sidebar-foreground: var(--secondary-foreground);
     --sidebar-primary: var(--secondary);
     --sidebar-primary-foreground: var(--secondary-foreground);
     --sidebar-accent: var(--accent);

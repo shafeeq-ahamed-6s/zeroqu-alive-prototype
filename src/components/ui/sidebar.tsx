@@ -302,12 +302,10 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
     const handleMouseLeave = () => setIsHovering(false);
 
     return (
-        <button
-            className={cn(
-                "p-2  shadow-xs hover:text-accent-foreground  dark:border-input dark:hover:bg-input/50 hover:bg-primary inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-7 shrink-0 [&_svg]:shrink-0",
-                className
-            )}
+        <Button
+            className={cn("p-2 shadow-xs [&_svg:not([class*='size-'])]:size-7", className)}
             onClick={handleClick}
+            variant={"ghost"}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             {...props}
@@ -319,7 +317,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
                 }
             />
             <span className="sr-only">Toggle Sidebar</span>
-        </button>
+        </Button>
     );
 }
 

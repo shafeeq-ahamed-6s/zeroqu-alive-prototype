@@ -5,13 +5,6 @@ export function SearchBar() {
     const [query, setQuery] = useState("");
     const [isFocused, setIsFocused] = useState(false);
 
-    const suggestions = [
-        "MV Aurora emissions review",
-        "Fleet compliance status",
-        "Route optimization available",
-        "CII performance trends",
-    ];
-
     return (
         <div className="relative max-w-2xl mx-auto">
             <div
@@ -30,25 +23,6 @@ export function SearchBar() {
                     />
                 </div>
             </div>
-
-            {isFocused && (
-                <div className="absolute top-full mt-2 left-0 right-0 bg-card border border-border rounded-xl shadow-lg overflow-hidden z-20 slide-up">
-                    <div className="p-2">
-                        <div className="text-xs font-medium text-muted-foreground mb-2 px-3">
-                            Recent Searches
-                        </div>
-                        {suggestions.map((suggestion, index) => (
-                            <button
-                                key={index}
-                                className="w-full text-left p-3 hover:bg-accent rounded-lg transition-colors text-sm"
-                                onClick={() => setQuery(suggestion)}
-                            >
-                                {suggestion}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

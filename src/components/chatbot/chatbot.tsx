@@ -1,15 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import {
-    MessageSquare,
-    Send,
-    X,
-    BarChart3,
-    FileText,
-    TrendingUp,
-    Ship,
-    Anchor,
-    Compass,
-} from "lucide-react";
+import { Send, X, BarChart3, FileText, TrendingUp, Ship, Anchor } from "lucide-react";
 import { LighthouseIcon } from "./lighthouse-icon";
 
 interface Message {
@@ -117,14 +107,14 @@ export function Chatbot() {
 
             {/* Chat Panel */}
             {isOpen && (
-                <div className="fixed bottom-24 right-6 w-[440px] h-[600px] bg-card border border-border rounded-2xl shadow-2xl z-50 slide-up overflow-hidden">
+                <div className="fixed bottom-24 right-6 w-[440px] h-[600px] bg-card border border-border rounded-2xl shadow-2xl z-50 slide-up flex flex-col overflow-hidden">
                     {/* Header */}
                     <div className="bg-marine-gradient p-6 text-white relative overflow-hidden">
                         <div className="absolute inset-0 opacity-20">
                             <div className="wave-pattern"></div>
                         </div>
                         <div className="relative z-10">
-                            <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-3">
                                     <div className="h-10 w-10 bg-white/20 rounded-full flex items-center justify-center">
                                         <Anchor className="h-5 w-5 text-white" />
@@ -138,117 +128,64 @@ export function Chatbot() {
                                     onClick={() => setIsOpen(false)}
                                     className="p-2 hover:bg-white/20 rounded-lg transition-colors"
                                 >
-                                    <X className="h-5 w-5" />
+                                    <X className="h-5 w-5" color="#1f4d33" strokeWidth={5} />
                                 </button>
-                            </div>
-
-                            <p className="text-sm opacity-90 mb-4">
-                                Your intelligent maritime assistant for fleet optimization and
-                                compliance management
-                            </p>
-
-                            {/* Primary CTA */}
-                            <button className="w-full bg-white text-gray-800 rounded-xl p-4 flex items-center justify-between hover:bg-gray-50 transition-colors group">
-                                <div className="flex items-center space-x-3">
-                                    <MessageSquare className="h-5 w-5" />
-                                    <span className="font-semibold">Chat with Captain Beacon</span>
-                                </div>
-                                <div className="transform group-hover:translate-x-1 transition-transform">
-                                    <svg
-                                        className="h-5 w-5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M9 5l7 7-7 7"
-                                        />
-                                    </svg>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Quick Action Cards */}
-                    <div className="p-4 bg-accent/30">
-                        <div className="grid grid-cols-2 gap-3">
-                            {quickActions.map((action, index) => (
-                                <div
-                                    key={index}
-                                    className={`${action.color} bg-opacity-10 border border-current border-opacity-20 rounded-xl p-4 cursor-pointer hover:scale-105 transition-transform`}
-                                >
-                                    <div className="flex items-center space-x-2">
-                                        <action.icon
-                                            className={`h-5 w-5 ${action.color.replace("bg-", "text-")}`}
-                                        />
-                                        <span className="text-sm font-medium text-card-foreground">
-                                            {action.text}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Big Reports Card */}
-                    <div className="p-4">
-                        <div className="bg-gradient-to-br from-blue-600 to-purple-700 rounded-xl p-6 text-white relative overflow-hidden cursor-pointer hover:scale-105 transition-transform">
-                            <div className="absolute top-0 right-0 opacity-20">
-                                <Compass className="h-24 w-24" />
-                            </div>
-                            <div className="relative z-10">
-                                <h4 className="text-lg font-bold mb-2">Fleet Performance Report</h4>
-                                <p className="text-sm opacity-90 mb-4">
-                                    Comprehensive analytics for Q4 2024 with AI-powered insights
-                                </p>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex space-x-4">
-                                        <div>
-                                            <div className="text-2xl font-bold">94%</div>
-                                            <div className="text-xs opacity-75">Compliance</div>
-                                        </div>
-                                        <div>
-                                            <div className="text-2xl font-bold">-12%</div>
-                                            <div className="text-xs opacity-75">Emissions</div>
-                                        </div>
-                                    </div>
-                                    <BarChart3 className="h-8 w-8 opacity-75" />
-                                </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Messages Area */}
-                    <div className="flex-1 p-4 overflow-y-auto max-h-[200px] space-y-4">
-                        {messages.map(message => (
-                            <div
-                                key={message.id}
-                                className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
-                            >
+                    <div className="flex-1 p-4 overflow-y-auto space-y-4 overflow-scroll">
+                        {messages.map((message, idx) => (
+                            <div key={message.id}>
                                 <div
-                                    className={`max-w-[80%] p-3 rounded-2xl ${
-                                        message.sender === "user"
-                                            ? "bg-marine-gradient text-white"
-                                            : "bg-accent text-card-foreground"
-                                    }`}
+                                    className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                                 >
-                                    <p className="text-sm">{message.text}</p>
-                                    <p
-                                        className={`text-xs mt-1 ${
+                                    <div
+                                        className={`max-w-[80%] p-3 rounded-2xl ${
                                             message.sender === "user"
-                                                ? "text-white/70"
-                                                : "text-muted-foreground"
+                                                ? "bg-marine-gradient text-white"
+                                                : "bg-accent text-card-foreground"
                                         }`}
                                     >
-                                        {message.timestamp.toLocaleTimeString([], {
-                                            hour: "2-digit",
-                                            minute: "2-digit",
-                                        })}
-                                    </p>
+                                        <p className="text-sm">{message.text}</p>
+                                        <p
+                                            className={`text-xs mt-1 ${
+                                                message.sender === "user"
+                                                    ? "text-white/70"
+                                                    : "text-muted-foreground"
+                                            }`}
+                                        >
+                                            {message.timestamp.toLocaleTimeString([], {
+                                                hour: "2-digit",
+                                                minute: "2-digit",
+                                            })}
+                                        </p>
+                                    </div>
                                 </div>
+
+                                {/* Quick Action Cards after first bot message */}
+                                {idx === 0 && message.sender === "bot" && (
+                                    <div className="mt-4">
+                                        <div className="flex flex-wrap gap-2">
+                                            {quickActions.map((action, index) => (
+                                                <div
+                                                    key={index}
+                                                    className={`${action.color} text-white bg-opacity-100 rounded-lg py-2 px-5 cursor-pointer hover:opacity-90 transition-all`}
+                                                >
+                                                    <div className="flex items-center space-x-2 whitespace-nowrap">
+                                                        {action.icon && (
+                                                            <action.icon className="h-5 w-5 text-white" />
+                                                        )}
+                                                        <span className="text-sm font-medium text-white">
+                                                            {action.text}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         ))}
 
@@ -272,8 +209,8 @@ export function Chatbot() {
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {/* Input Form */}
-                    <div className="p-4 border-t border-border">
+                    {/* Input Form - Fixed at bottom */}
+                    <div className="p-4 border-t border-border mt-auto">
                         <div className="flex space-x-2">
                             <input
                                 type="text"

@@ -6,6 +6,14 @@
     --lighthouse-border: 0 0% 80%;
 }
 
+.dark {
+    --lighthouse-primary-foreground: 152 42% 10%;
+    --lighthouse-primary: 152 42% 55%;
+    --lighthouse-secondary: 215 28% 17%;
+    --lighthouse-destructive: 0 63% 31%;
+    --lighthouse-border: 0 0% 80%;
+}
+
 @keyframes rotate-light {
     0% {
         transform: rotateY(0deg) scaleX(1);
