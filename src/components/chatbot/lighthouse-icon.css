@@ -1,19 +1,3 @@
-* {
-    --lighthouse-primary-foreground: 152 42% 10%;
-    --lighthouse-primary: 152 42% 55%;
-    --lighthouse-secondary: 215 28% 17%;
-    --lighthouse-destructive: 0 63% 31%;
-    --lighthouse-border: 0 0% 80%;
-}
-
-.dark {
-    --lighthouse-primary-foreground: 152 42% 10%;
-    --lighthouse-primary: 152 42% 55%;
-    --lighthouse-secondary: 215 28% 17%;
-    --lighthouse-destructive: 0 63% 31%;
-    --lighthouse-border: 0 0% 80%;
-}
-
 @keyframes rotate-light {
     0% {
         transform: rotateY(0deg) scaleX(1);
@@ -62,7 +46,7 @@
     height: 0;
     border-left: 9px solid transparent;
     border-right: 9px solid transparent;
-    border-bottom: 7px solid hsl(var(--lighthouse-destructive));
+    border-bottom: 7px solid var(--lighthouse-destructive);
 }
 
 .lighthouse-lantern {
@@ -70,13 +54,13 @@
     height: 8px;
     background-color: hsla(60, 100%, 90%, 0.5);
     position: relative;
-    border-left: 2px solid hsl(var(--lighthouse-primary));
-    border-right: 2px solid hsl(var(--lighthouse-primary));
+    border-left: 2px solid var(--lighthouse-primary);
+    border-right: 2px solid var(--lighthouse-primary);
     overflow: visible;
 }
 
 .dark .lighthouse-lantern {
-    border-color: hsl(var(--lighthouse-primary-foreground));
+    border-color: var(--lighthouse-primary-foreground);
 }
 
 .lighthouse-light-container {
@@ -96,7 +80,7 @@
     left: 50%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, hsla(54, 100%, 70%, 0.8), hsla(54, 100%, 70%, 0));
+    background: linear-gradient(to right, var(--lighthouse-light), hsla(54, 100%, 70%, 0));
     clip-path: polygon(0 48%, 100% -50%, 100% 150%, 0 52%);
     transform-origin: left center;
     animation: rotate-light 5s linear infinite;
@@ -106,25 +90,25 @@
 .lighthouse-gallery {
     width: 22px;
     height: 3px;
-    background-color: hsl(var(--lighthouse-primary));
+    background-color: var(--lighthouse-primary);
     border-radius: 1px 1px 0 0;
 }
 
 .dark .lighthouse-gallery {
-    background-color: hsl(var(--lighthouse-primary-foreground));
+    background-color: var(--lighthouse-primary-foreground);
 }
 
 .lighthouse-support {
     width: 20px;
     height: 4px;
-    background-color: hsl(var(--lighthouse-primary-foreground));
-    border: 1px solid hsl(var(--lighthouse-border));
+    background-color: var(--lighthouse-primary-foreground);
+    border: 1px solid var(--lighthouse-border);
     border-bottom: none;
     clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
 }
 
 .dark .lighthouse-support {
-    background-color: hsl(var(--lighthouse-secondary));
+    background-color: var(--lighthouse-secondary);
 }
 
 .lighthouse-base {
@@ -132,10 +116,10 @@
     height: 26px;
     background: repeating-linear-gradient(
         to bottom,
-        hsl(var(--lighthouse-destructive)),
-        hsl(var(--lighthouse-destructive)) 7px,
-        hsl(var(--lighthouse-primary-foreground)) 7px,
-        hsl(var(--lighthouse-primary-foreground)) 14px
+        var(--lighthouse-destructive),
+        var(--lighthouse-destructive) 7px,
+        var(--lighthouse-primary-foreground) 7px,
+        var(--lighthouse-primary-foreground) 14px
     );
     clip-path: polygon(15% 0, 85% 0, 100% 100%, 0% 100%);
     position: relative;
@@ -144,19 +128,19 @@
 .dark .lighthouse-base {
     background: repeating-linear-gradient(
         to bottom,
-        hsl(var(--lighthouse-destructive)),
-        hsl(var(--lighthouse-destructive)) 7px,
-        hsl(var(--lighthouse-secondary)) 7px,
-        hsl(var(--lighthouse-secondary)) 14px
+        var(--lighthouse-destructive),
+        var(--lighthouse-destructive) 7px,
+        var(--lighthouse-secondary) 7px,
+        var(--lighthouse-secondary) 14px
     );
 }
 
 .lighthouse-foundation {
     width: 24px;
     height: 4px;
-    background-color: hsl(var(--lighthouse-primary));
+    background-color: var(--lighthouse-primary);
 }
 
 .dark .lighthouse-foundation {
-    background-color: hsl(var(--lighthouse-primary-foreground));
+    background-color: var(--lighthouse-primary-foreground);
 }

@@ -34,7 +34,7 @@
     --ring: #1d9de4;
 
     /* === Chart Colors === */
-    --chart-1: #d35eef;
+    --chart-1: #5fa5f9;
     --chart-2: #9c62e8;
     --chart-3: #6464e2;
     --chart-4: #6791db;
@@ -55,4 +55,12 @@
     --sidebar-accent-foreground: var(--accent-foreground);
     --sidebar-border: var(--tertiary);
     --sidebar-ring: var(--muted);
+
+    /* Lighthouse Colors */
+    --lighthouse-primary-foreground: hsl(152, 42%, 10%);
+    --lighthouse-primary: hsl(152, 42%, 55%);
+    --lighthouse-secondary: hsl(215, 28%, 17%);
+    --lighthouse-destructive: hsl(0, 63%, 31%);
+    --lighthouse-border: hsl(0, 0%, 80%);
+    --lighthouse-light: hsl(54, 100%, 70%, 0.8);
 }
