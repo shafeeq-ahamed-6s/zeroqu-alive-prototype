@@ -142,8 +142,8 @@ export function EmissionTrendsChart() {
                             type="monotone"
                             stroke={chartConfig[activeChart].color}
                             strokeWidth={2}
-                            dot={false}
-                            activeDot={{ r: 6 }}
+                            dot={{ fill: chartConfig[activeChart].color, strokeWidth: 2, r: 4 }}
+                            activeDot={{ r: 6, fill: chartConfig[activeChart].color, stroke: "#fff", strokeWidth: 2 }}
                         />
                     </LineChart>
                 </ChartContainer>
