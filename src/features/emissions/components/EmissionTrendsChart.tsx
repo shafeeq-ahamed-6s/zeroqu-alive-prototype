@@ -23,19 +23,19 @@ const chartData = [
 const chartConfig = {
     cii: {
         label: "CII Rating",
-        color: "hsl(var(--chart-1))",
+        color: "#5fa5f9",
     },
     co2: {
         label: "CO₂ Emissions (MT)",
-        color: "hsl(var(--chart-2))",
+        color: "#9c62e8",
     },
     euEts: {
         label: "EU ETS (MT)",
-        color: "hsl(var(--chart-3))",
+        color: "#6464e2",
     },
     fuelEu: {
         label: "Fuel EU GHG",
-        color: "hsl(var(--chart-4))",
+        color: "#6791db",
     },
 } satisfies ChartConfig;
 
