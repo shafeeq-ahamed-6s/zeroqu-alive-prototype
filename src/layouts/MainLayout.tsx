@@ -96,32 +96,20 @@ export default function MainLayout({
             },
             {
                 title: "Fleet Emissions",
-                url: "/emissions",
+                url: "/emission",
                 icon: Target,
                 items: [
                     {
                         title: "Overview",
-                        url: "/emissions/overview",
+                        url: "/emission#overview",
                     },
                     {
-                        title: "Vessel",
-                        url: "/emissions/vessel",
-                    },
-                    {
-                        title: "CII Analytics",
-                        url: "/emissions/cii-analytics",
-                    },
-                    {
-                        title: "EU Emission",
-                        url: "/emissions/eu-emission",
-                    },
-                    {
-                        title: "Emission Calculator",
-                        url: "/emissions/emission-calculator",
+                        title: "Emission Simulation",
+                        url: "/emission#simulation",
                     },
                     {
                         title: "Reports",
-                        url: "/emissions/reports",
+                        url: "/emission#reports",
                     },
                 ],
             },

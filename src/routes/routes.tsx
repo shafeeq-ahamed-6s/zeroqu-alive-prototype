@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import ComingSoonPage from "@/pages/ComingSoonPage";
 import Dashboard from "@/features/homepage/Dashboard";
 import DailyReporting from "@/features/dailyReporting/DailyReporting";
+import EmissionTracking from "@/features/emissions/EmissionTracking";
 
 const routes = [
     {
@@ -29,7 +30,7 @@ const routes = [
                     { path: "*", element: <NotFound /> },
                     {
                         index: true,
-                        element: <ComingSoonPage featureName="Emission" />,
+                        element: <EmissionTracking />,
                     },
                 ],
             },
