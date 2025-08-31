@@ -4,7 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
@@ -69,18 +75,18 @@ export function EmissionSimulation() {
     const [simulationInputs, setSimulationInputs] = useState({
         // Estimated CII
         desiredCII: "",
-        
+
         // Bio CII
         biofuelSupply: "",
         biofuelDesiredCII: "",
         ei: "85.2",
         lcv: "42.7",
-        
+
         // EU ETS
         reportingYear: "2024",
         euRelevanceSea: "Non EU",
         euRelevancePort: "Non EU",
-        
+
         // Fuel EU GHG
         anticipatedFuelType: "HFO",
         rfWind: "0",
@@ -132,7 +138,7 @@ export function EmissionSimulation() {
 
     const simulateResults = async () => {
         setIsSimulating(true);
-        
+
         // Simulate API call with realistic calculations
         await new Promise(resolve => setTimeout(resolve, 1500));
 
@@ -145,12 +151,14 @@ export function EmissionSimulation() {
         const totalFuelSea = fuelAtSea * seaHours;
         const totalCO2 = totalFuelSea * 3.114; // CO2 factor for HFO
         const attainedCII = (totalCO2 * 1000000) / (deadWeight * distance);
-        
+
         setResults({
             estimatedCII: {
                 attainedCII: attainedCII.toFixed(2),
                 totalFOCSea: totalFuelSea.toFixed(1),
-                totalFOCPort: (parseFloat(vesselData.amountAtPort) * parseFloat(vesselData.portHours)).toFixed(1),
+                totalFOCPort: (
+                    parseFloat(vesselData.amountAtPort) * parseFloat(vesselData.portHours)
+                ).toFixed(1),
                 totalCO2: totalCO2.toFixed(1),
             },
             bioCII: {
@@ -166,7 +174,10 @@ export function EmissionSimulation() {
                 coverageRequired: "40%",
             },
             fuelEUGHG: {
-                ghgIntensity: (91.16 - (parseFloat(simulationInputs.rfWind) + parseFloat(simulationInputs.rfOps)) * 0.5).toFixed(2),
+                ghgIntensity: (
+                    91.16 -
+                    (parseFloat(simulationInputs.rfWind) + parseFloat(simulationInputs.rfOps)) * 0.5
+                ).toFixed(2),
                 complianceBalance: ((91.16 - 89.34) * totalCO2).toFixed(1),
             },
         });
@@ -255,7 +266,9 @@ export function EmissionSimulation() {
                                 id="deadWeight"
                                 type="number"
                                 value={vesselData.deadWeight}
-                                onChange={e => handleVesselInputChange("deadWeight", e.target.value)}
+                                onChange={e =>
+                                    handleVesselInputChange("deadWeight", e.target.value)
+                                }
                                 placeholder="55000"
                             />
                         </div>
@@ -265,7 +278,9 @@ export function EmissionSimulation() {
                             <Input
                                 id="originPort"
                                 value={vesselData.originPort}
-                                onChange={e => handleVesselInputChange("originPort", e.target.value)}
+                                onChange={e =>
+                                    handleVesselInputChange("originPort", e.target.value)
+                                }
                                 placeholder="SGSIN (Singapore)"
                             />
                         </div>
@@ -275,7 +290,9 @@ export function EmissionSimulation() {
                             <Input
                                 id="destinationPort"
                                 value={vesselData.destinationPort}
-                                onChange={e => handleVesselInputChange("destinationPort", e.target.value)}
+                                onChange={e =>
+                                    handleVesselInputChange("destinationPort", e.target.value)
+                                }
                                 placeholder="NLRTM (Rotterdam)"
                             />
                         </div>
@@ -286,7 +303,9 @@ export function EmissionSimulation() {
                                 id="totalDistance"
                                 type="number"
                                 value={vesselData.totalDistance}
-                                onChange={e => handleVesselInputChange("totalDistance", e.target.value)}
+                                onChange={e =>
+                                    handleVesselInputChange("totalDistance", e.target.value)
+                                }
                                 placeholder="12500"
                             />
                         </div>
@@ -322,12 +341,16 @@ export function EmissionSimulation() {
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-4">
-                                <h4 className="font-medium text-card-foreground">Fuel Type at Sea</h4>
+                                <h4 className="font-medium text-card-foreground">
+                                    Fuel Type at Sea
+                                </h4>
                                 <div className="space-y-2">
                                     <Label>Select fuel type</Label>
                                     <Select
                                         value={vesselData.fuelTypeAtSea}
-                                        onValueChange={value => handleVesselInputChange("fuelTypeAtSea", value)}
+                                        onValueChange={value =>
+                                            handleVesselInputChange("fuelTypeAtSea", value)
+                                        }
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select fuel type" />
@@ -347,19 +370,25 @@ export function EmissionSimulation() {
                                         type="number"
                                         step="0.1"
                                         value={vesselData.amountAtSea}
-                                        onChange={e => handleVesselInputChange("amountAtSea", e.target.value)}
+                                        onChange={e =>
+                                            handleVesselInputChange("amountAtSea", e.target.value)
+                                        }
                                         placeholder="0.0"
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-medium text-card-foreground">Fuel Type at Port</h4>
+                                <h4 className="font-medium text-card-foreground">
+                                    Fuel Type at Port
+                                </h4>
                                 <div className="space-y-2">
                                     <Label>Select fuel type</Label>
                                     <Select
                                         value={vesselData.fuelTypeAtPort}
-                                        onValueChange={value => handleVesselInputChange("fuelTypeAtPort", value)}
+                                        onValueChange={value =>
+                                            handleVesselInputChange("fuelTypeAtPort", value)
+                                        }
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select fuel type" />
@@ -379,7 +408,9 @@ export function EmissionSimulation() {
                                         type="number"
                                         step="0.1"
                                         value={vesselData.amountAtPort}
-                                        onChange={e => handleVesselInputChange("amountAtPort", e.target.value)}
+                                        onChange={e =>
+                                            handleVesselInputChange("amountAtPort", e.target.value)
+                                        }
                                         placeholder="0.0"
                                     />
                                 </div>
@@ -397,11 +428,16 @@ export function EmissionSimulation() {
                         Emission Simulators
                     </CardTitle>
                     <CardDescription>
-                        Unified calculators for CII, EU ETS, and Fuel EU GHG analysis. Enter data once and see all results.
+                        Unified calculators for CII, EU ETS, and Fuel EU GHG analysis. Enter data
+                        once and see all results.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Tabs value={activeSimulator} onValueChange={setActiveSimulator} className="w-full">
+                    <Tabs
+                        value={activeSimulator}
+                        onValueChange={setActiveSimulator}
+                        className="w-full"
+                    >
                         <TabsList className="grid w-full grid-cols-4">
                             <TabsTrigger value="estimated-cii" className="flex items-center gap-2">
                                 <Target className="h-4 w-4" />
@@ -425,41 +461,58 @@ export function EmissionSimulation() {
                         <TabsContent value="estimated-cii" className="mt-6">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 <div className="space-y-4">
-                                    <h3 className="text-lg font-medium text-card-foreground">Input Parameters</h3>
+                                    <h3 className="text-lg font-medium text-card-foreground">
+                                        Input Parameters
+                                    </h3>
                                     <div className="space-y-2">
                                         <Label htmlFor="desiredCII">Desired CII (optional)</Label>
                                         <Input
                                             id="desiredCII"
                                             value={simulationInputs.desiredCII}
-                                            onChange={e => handleSimulationInputChange("desiredCII", e.target.value)}
+                                            onChange={e =>
+                                                handleSimulationInputChange(
+                                                    "desiredCII",
+                                                    e.target.value
+                                                )
+                                            }
                                             placeholder="Enter target CII (e.g., A)"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
-                                    <h3 className="text-lg font-medium text-card-foreground">Results</h3>
+                                    <h3 className="text-lg font-medium text-card-foreground">
+                                        Results
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Attained CII</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Attained CII
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.estimatedCII.attainedCII}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Total FOC at Sea</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Total FOC at Sea
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.estimatedCII.totalFOCSea}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Total FOC at Port</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Total FOC at Port
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.estimatedCII.totalFOCPort}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Total CO₂ Emission</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Total CO₂ Emission
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.estimatedCII.totalCO2}
                                             </div>
@@ -473,13 +526,20 @@ export function EmissionSimulation() {
                         <TabsContent value="bio-cii" className="mt-6">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 <div className="space-y-4">
-                                    <h3 className="text-lg font-medium text-card-foreground">Bio Fuel Parameters</h3>
+                                    <h3 className="text-lg font-medium text-card-foreground">
+                                        Bio Fuel Parameters
+                                    </h3>
                                     <div className="space-y-4">
                                         <div className="space-y-2">
                                             <Label>Select Biofuel Supply</Label>
                                             <Select
                                                 value={simulationInputs.biofuelSupply}
-                                                onValueChange={value => handleSimulationInputChange("biofuelSupply", value)}
+                                                onValueChange={value =>
+                                                    handleSimulationInputChange(
+                                                        "biofuelSupply",
+                                                        value
+                                                    )
+                                                }
                                             >
                                                 <SelectTrigger>
                                                     <SelectValue placeholder="Select biofuel" />
@@ -497,7 +557,12 @@ export function EmissionSimulation() {
                                             <Label>Desired CII</Label>
                                             <Input
                                                 value={simulationInputs.biofuelDesiredCII}
-                                                onChange={e => handleSimulationInputChange("biofuelDesiredCII", e.target.value)}
+                                                onChange={e =>
+                                                    handleSimulationInputChange(
+                                                        "biofuelDesiredCII",
+                                                        e.target.value
+                                                    )
+                                                }
                                                 placeholder="Enter target CII value"
                                             />
                                         </div>
@@ -507,7 +572,12 @@ export function EmissionSimulation() {
                                                 type="number"
                                                 step="0.1"
                                                 value={simulationInputs.ei}
-                                                onChange={e => handleSimulationInputChange("ei", e.target.value)}
+                                                onChange={e =>
+                                                    handleSimulationInputChange(
+                                                        "ei",
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </div>
                                         <div className="space-y-2">
@@ -516,35 +586,50 @@ export function EmissionSimulation() {
                                                 type="number"
                                                 step="0.1"
                                                 value={simulationInputs.lcv}
-                                                onChange={e => handleSimulationInputChange("lcv", e.target.value)}
+                                                onChange={e =>
+                                                    handleSimulationInputChange(
+                                                        "lcv",
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
-                                    <h3 className="text-lg font-medium text-card-foreground">Bio CII Results</h3>
+                                    <h3 className="text-lg font-medium text-card-foreground">
+                                        Bio CII Results
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="p-4 bg-green-500/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Corrected CII</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Corrected CII
+                                            </div>
                                             <div className="text-xl font-bold text-green-600">
                                                 {results.bioCII.correctedCII}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Total FOC</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Total FOC
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.bioCII.totalFOC}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Total CO₂</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Total CO₂
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.bioCII.totalCO2}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Original CII</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Original CII
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.bioCII.originalCII}
                                             </div>
@@ -558,13 +643,20 @@ export function EmissionSimulation() {
                         <TabsContent value="eu-ets" className="mt-6">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 <div className="space-y-4">
-                                    <h3 className="text-lg font-medium text-card-foreground">EU ETS Parameters</h3>
+                                    <h3 className="text-lg font-medium text-card-foreground">
+                                        EU ETS Parameters
+                                    </h3>
                                     <div className="space-y-4">
                                         <div className="space-y-2">
                                             <Label>Reporting Year</Label>
                                             <Select
                                                 value={simulationInputs.reportingYear}
-                                                onValueChange={value => handleSimulationInputChange("reportingYear", value)}
+                                                onValueChange={value =>
+                                                    handleSimulationInputChange(
+                                                        "reportingYear",
+                                                        value
+                                                    )
+                                                }
                                             >
                                                 <SelectTrigger>
                                                     <SelectValue />
@@ -580,7 +672,12 @@ export function EmissionSimulation() {
                                             <Label>EU Relevance at Sea</Label>
                                             <Select
                                                 value={simulationInputs.euRelevanceSea}
-                                                onValueChange={value => handleSimulationInputChange("euRelevanceSea", value)}
+                                                onValueChange={value =>
+                                                    handleSimulationInputChange(
+                                                        "euRelevanceSea",
+                                                        value
+                                                    )
+                                                }
                                             >
                                                 <SelectTrigger>
                                                     <SelectValue />
@@ -595,7 +692,12 @@ export function EmissionSimulation() {
                                             <Label>EU Relevance at Port</Label>
                                             <Select
                                                 value={simulationInputs.euRelevancePort}
-                                                onValueChange={value => handleSimulationInputChange("euRelevancePort", value)}
+                                                onValueChange={value =>
+                                                    handleSimulationInputChange(
+                                                        "euRelevancePort",
+                                                        value
+                                                    )
+                                                }
                                             >
                                                 <SelectTrigger>
                                                     <SelectValue />
@@ -610,28 +712,38 @@ export function EmissionSimulation() {
                                 </div>
 
                                 <div className="space-y-4">
-                                    <h3 className="text-lg font-medium text-card-foreground">EU ETS Results</h3>
+                                    <h3 className="text-lg font-medium text-card-foreground">
+                                        EU ETS Results
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="p-4 bg-blue-500/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">EUAs Exposure</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                EUAs Exposure
+                                            </div>
                                             <div className="text-xl font-bold text-blue-600">
                                                 {results.euETS.euasExposure}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">CO₂ Emission at Sea</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                CO₂ Emission at Sea
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.euETS.co2EmissionSea}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">CO₂ Emission at Port</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                CO₂ Emission at Port
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.euETS.co2EmissionPort}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Coverage Required</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Coverage Required
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.euETS.coverageRequired}
                                             </div>
@@ -645,13 +757,20 @@ export function EmissionSimulation() {
                         <TabsContent value="fuel-eu-ghg" className="mt-6">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 <div className="space-y-4">
-                                    <h3 className="text-lg font-medium text-card-foreground">Fuel EU GHG Parameters</h3>
+                                    <h3 className="text-lg font-medium text-card-foreground">
+                                        Fuel EU GHG Parameters
+                                    </h3>
                                     <div className="space-y-4">
                                         <div className="space-y-2">
                                             <Label>Anticipated Fuel Type (Yearly)</Label>
                                             <Select
                                                 value={simulationInputs.anticipatedFuelType}
-                                                onValueChange={value => handleSimulationInputChange("anticipatedFuelType", value)}
+                                                onValueChange={value =>
+                                                    handleSimulationInputChange(
+                                                        "anticipatedFuelType",
+                                                        value
+                                                    )
+                                                }
                                             >
                                                 <SelectTrigger>
                                                     <SelectValue />
@@ -671,7 +790,12 @@ export function EmissionSimulation() {
                                                 type="number"
                                                 step="0.1"
                                                 value={simulationInputs.rfWind}
-                                                onChange={e => handleSimulationInputChange("rfWind", e.target.value)}
+                                                onChange={e =>
+                                                    handleSimulationInputChange(
+                                                        "rfWind",
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </div>
                                         <div className="space-y-2">
@@ -680,23 +804,34 @@ export function EmissionSimulation() {
                                                 type="number"
                                                 step="0.1"
                                                 value={simulationInputs.rfOps}
-                                                onChange={e => handleSimulationInputChange("rfOps", e.target.value)}
+                                                onChange={e =>
+                                                    handleSimulationInputChange(
+                                                        "rfOps",
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
-                                    <h3 className="text-lg font-medium text-card-foreground">Fuel EU Results</h3>
+                                    <h3 className="text-lg font-medium text-card-foreground">
+                                        Fuel EU Results
+                                    </h3>
                                     <div className="grid grid-cols-1 gap-4">
                                         <div className="p-4 bg-purple-500/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">GHG Intensity</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                GHG Intensity
+                                            </div>
                                             <div className="text-xl font-bold text-purple-600">
                                                 {results.fuelEUGHG.ghgIntensity}
                                             </div>
                                         </div>
                                         <div className="p-4 bg-accent/10 rounded-lg">
-                                            <div className="text-sm text-muted-foreground">Compliance Balance</div>
+                                            <div className="text-sm text-muted-foreground">
+                                                Compliance Balance
+                                            </div>
                                             <div className="text-xl font-bold text-card-foreground">
                                                 {results.fuelEUGHG.complianceBalance}
                                             </div>
@@ -709,8 +844,8 @@ export function EmissionSimulation() {
 
                     {/* Simulate Button */}
                     <div className="flex justify-center mt-8">
-                        <Button 
-                            onClick={simulateResults} 
+                        <Button
+                            onClick={simulateResults}
                             disabled={isSimulating}
                             className="px-8 py-3 text-lg"
                         >
@@ -726,59 +861,6 @@ export function EmissionSimulation() {
                                 </>
                             )}
                         </Button>
-                    </div>
-                </CardContent>
-            </Card>
-
-            {/* Real-time Results Summary */}
-            <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/20">
-                <CardHeader>
-                    <CardTitle className="flex items-center">
-                        <Target className="h-5 w-5 mr-2" />
-                        Simulation Summary
-                    </CardTitle>
-                    <CardDescription>
-                        Real-time results across all emission calculation methods
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div className="p-4 bg-card rounded-lg border border-border">
-                            <div className="text-sm text-muted-foreground mb-2">Estimated CII</div>
-                            <div className="text-2xl font-bold text-card-foreground">
-                                {results.estimatedCII.attainedCII}
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                                CO₂: {results.estimatedCII.totalCO2} MT
-                            </div>
-                        </div>
-                        <div className="p-4 bg-card rounded-lg border border-border">
-                            <div className="text-sm text-muted-foreground mb-2">Bio CII</div>
-                            <div className="text-2xl font-bold text-green-600">
-                                {results.bioCII.correctedCII}
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                                Improved: {results.bioCII.originalCII}
-                            </div>
-                        </div>
-                        <div className="p-4 bg-card rounded-lg border border-border">
-                            <div className="text-sm text-muted-foreground mb-2">EU ETS</div>
-                            <div className="text-2xl font-bold text-blue-600">
-                                {results.euETS.euasExposure}
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                                Coverage: {results.euETS.coverageRequired}
-                            </div>
-                        </div>
-                        <div className="p-4 bg-card rounded-lg border border-border">
-                            <div className="text-sm text-muted-foreground mb-2">Fuel EU GHG</div>
-                            <div className="text-2xl font-bold text-purple-600">
-                                {results.fuelEUGHG.ghgIntensity}
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                                Balance: {results.fuelEUGHG.complianceBalance}
-                            </div>
-                        </div>
                     </div>
                 </CardContent>
             </Card>
