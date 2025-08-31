@@ -3,7 +3,12 @@
 import * as React from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import {
+    type ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+} from "@/components/ui/chart";
 
 const chartData = [
     { month: "Jan", cii: 4.2, co2: 2847, euEts: 1138, fuelEu: 89.3 },
@@ -122,28 +127,21 @@ export function EmissionTrendsChart() {
                         }}
                     >
                         <CartesianGrid vertical={false} />
-                        <XAxis
-                            dataKey="month"
-                            tickLine={false}
-                            axisLine={false}
-                            tickMargin={8}
-                        />
-                        <YAxis
-                            tickLine={false}
-                            axisLine={false}
-                            tickMargin={8}
-                        />
-                        <ChartTooltip
-                            cursor={false}
-                            content={<ChartTooltipContent hideLabel />}
-                        />
+                        <XAxis dataKey="month" tickLine={false} axisLine={false} tickMargin={8} />
+                        <YAxis tickLine={false} axisLine={false} tickMargin={8} />
+                        <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
                         <Line
                             dataKey={activeChart}
                             type="monotone"
                             stroke={chartConfig[activeChart].color}
                             strokeWidth={2}
                             dot={{ fill: chartConfig[activeChart].color, strokeWidth: 2, r: 4 }}
-                            activeDot={{ r: 6, fill: chartConfig[activeChart].color, stroke: "#fff", strokeWidth: 2 }}
+                            activeDot={{
+                                r: 6,
+                                fill: chartConfig[activeChart].color,
+                                stroke: "#fff",
+                                strokeWidth: 2,
+                            }}
                         />
                     </LineChart>
                 </ChartContainer>
