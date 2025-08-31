@@ -2,7 +2,13 @@ import { useState } from "react";
 import { FileText, Download, Eye, Calendar, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -109,8 +115,9 @@ export function Reports() {
     const [searchQuery, setSearchQuery] = useState("");
 
     const filteredReports = reports.filter(report => {
-        const matchesSearch = report.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            report.vessel.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesSearch =
+            report.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            report.vessel.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesType = filters.type === "all" || report.type === filters.type;
         const matchesVessel = filters.vessel === "all" || report.vessel === filters.vessel;
         const matchesStatus = filters.status === "all" || report.status === filters.status;
@@ -266,7 +273,12 @@ export function Reports() {
                         </div>
                         <div className="space-y-2">
                             <Label>Type</Label>
-                            <Select value={filters.type} onValueChange={value => setFilters(prev => ({ ...prev, type: value }))}>
+                            <Select
+                                value={filters.type}
+                                onValueChange={value =>
+                                    setFilters(prev => ({ ...prev, type: value }))
+                                }
+                            >
                                 <SelectTrigger>
                                     <SelectValue />
                                 </SelectTrigger>
@@ -281,7 +293,12 @@ export function Reports() {
                         </div>
                         <div className="space-y-2">
                             <Label>Vessel</Label>
-                            <Select value={filters.vessel} onValueChange={value => setFilters(prev => ({ ...prev, vessel: value }))}>
+                            <Select
+                                value={filters.vessel}
+                                onValueChange={value =>
+                                    setFilters(prev => ({ ...prev, vessel: value }))
+                                }
+                            >
                                 <SelectTrigger>
                                     <SelectValue />
                                 </SelectTrigger>
@@ -297,7 +314,12 @@ export function Reports() {
                         </div>
                         <div className="space-y-2">
                             <Label>Status</Label>
-                            <Select value={filters.status} onValueChange={value => setFilters(prev => ({ ...prev, status: value }))}>
+                            <Select
+                                value={filters.status}
+                                onValueChange={value =>
+                                    setFilters(prev => ({ ...prev, status: value }))
+                                }
+                            >
                                 <SelectTrigger>
                                     <SelectValue />
                                 </SelectTrigger>
@@ -311,7 +333,12 @@ export function Reports() {
                         </div>
                         <div className="space-y-2">
                             <Label>Period</Label>
-                            <Select value={filters.period} onValueChange={value => setFilters(prev => ({ ...prev, period: value }))}>
+                            <Select
+                                value={filters.period}
+                                onValueChange={value =>
+                                    setFilters(prev => ({ ...prev, period: value }))
+                                }
+                            >
                                 <SelectTrigger>
                                     <SelectValue />
                                 </SelectTrigger>
@@ -346,7 +373,9 @@ export function Reports() {
                             >
                                 <div className="flex items-start justify-between">
                                     <div className="flex items-start space-x-4">
-                                        <div className={`p-3 rounded-lg ${getTypeColor(report.type)}`}>
+                                        <div
+                                            className={`p-3 rounded-lg ${getTypeColor(report.type)}`}
+                                        >
                                             <FileText className="h-6 w-6" />
                                         </div>
                                         <div className="space-y-2">
@@ -368,26 +397,34 @@ export function Reports() {
 
                                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                                                 <div>
-                                                    <span className="text-muted-foreground">Vessel:</span>
+                                                    <span className="text-muted-foreground">
+                                                        Vessel:
+                                                    </span>
                                                     <span className="text-card-foreground ml-2 font-medium">
                                                         {report.vessel}
                                                     </span>
                                                 </div>
                                                 <div>
-                                                    <span className="text-muted-foreground">Period:</span>
+                                                    <span className="text-muted-foreground">
+                                                        Period:
+                                                    </span>
                                                     <span className="text-card-foreground ml-2">
                                                         {report.period}
                                                     </span>
                                                 </div>
                                                 <div>
-                                                    <span className="text-muted-foreground">CO₂ Emissions:</span>
+                                                    <span className="text-muted-foreground">
+                                                        CO₂ Emissions:
+                                                    </span>
                                                     <span className="text-card-foreground ml-2">
                                                         {report.co2Emissions.toLocaleString()} MT
                                                     </span>
                                                 </div>
                                                 {report.ciiRating && (
                                                     <div>
-                                                        <span className="text-muted-foreground">CII Rating:</span>
+                                                        <span className="text-muted-foreground">
+                                                            CII Rating:
+                                                        </span>
                                                         <span className="text-card-foreground ml-2 font-bold">
                                                             {report.ciiRating}
                                                         </span>
@@ -398,7 +435,12 @@ export function Reports() {
                                             <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                                                 <div className="flex items-center space-x-1">
                                                     <Calendar className="h-3 w-3" />
-                                                    <span>Generated: {new Date(report.generatedDate).toLocaleDateString()}</span>
+                                                    <span>
+                                                        Generated:{" "}
+                                                        {new Date(
+                                                            report.generatedDate
+                                                        ).toLocaleDateString()}
+                                                    </span>
                                                 </div>
                                                 <div>Size: {report.size}</div>
                                                 <div>ID: {report.id}</div>
