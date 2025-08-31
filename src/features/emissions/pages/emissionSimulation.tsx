@@ -436,7 +436,7 @@ export function EmissionSimulation() {
                                             handleSimulationInputChange("biofuelSupply", value)
                                         }
                                     >
-                                        <SelectTrigger>
+                                        <SelectTrigger className="w-full">
                                             <SelectValue placeholder="Select biofuel" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -531,7 +531,7 @@ export function EmissionSimulation() {
                             <h3 className="text-lg font-medium text-card-foreground">
                                 EU ETS Parameters
                             </h3>
-                            <div className="space-y-4 grid grid-cols-2 gap-4">
+                            <div className="space-y-4">
                                 <div className="space-y-2">
                                     <Label>Reporting Year</Label>
                                     <Select
@@ -540,7 +540,7 @@ export function EmissionSimulation() {
                                             handleSimulationInputChange("reportingYear", value)
                                         }
                                     >
-                                        <SelectTrigger>
+                                        <SelectTrigger className="w-full">
                                             <SelectValue />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -550,39 +550,44 @@ export function EmissionSimulation() {
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className="space-y-2">
-                                    <Label>EU Relevance at Sea</Label>
-                                    <Select
-                                        value={simulationInputs.euRelevanceSea}
-                                        onValueChange={value =>
-                                            handleSimulationInputChange("euRelevanceSea", value)
-                                        }
-                                    >
-                                        <SelectTrigger>
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="EU">EU</SelectItem>
-                                            <SelectItem value="Non EU">Non EU</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label>EU Relevance at Port</Label>
-                                    <Select
-                                        value={simulationInputs.euRelevancePort}
-                                        onValueChange={value =>
-                                            handleSimulationInputChange("euRelevancePort", value)
-                                        }
-                                    >
-                                        <SelectTrigger>
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="EU">EU</SelectItem>
-                                            <SelectItem value="Non EU">Non EU</SelectItem>
-                                        </SelectContent>
-                                    </Select>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label>EU Relevance at Sea</Label>
+                                        <Select
+                                            value={simulationInputs.euRelevanceSea}
+                                            onValueChange={value =>
+                                                handleSimulationInputChange("euRelevanceSea", value)
+                                            }
+                                        >
+                                            <SelectTrigger className="w-full">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="EU">EU</SelectItem>
+                                                <SelectItem value="Non EU">Non EU</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label>EU Relevance at Port</Label>
+                                        <Select
+                                            value={simulationInputs.euRelevancePort}
+                                            onValueChange={value =>
+                                                handleSimulationInputChange(
+                                                    "euRelevancePort",
+                                                    value
+                                                )
+                                            }
+                                        >
+                                            <SelectTrigger className="w-full">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="EU">EU</SelectItem>
+                                                <SelectItem value="Non EU">Non EU</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -636,51 +641,51 @@ export function EmissionSimulation() {
                             <h3 className="text-lg font-medium text-card-foreground">
                                 Fuel EU GHG Parameters
                             </h3>
-                            <div className="space-y-4 grid grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <Label>Anticipated Fuel Type (Yearly)</Label>
-                                    <Select
-                                        value={simulationInputs.anticipatedFuelType}
-                                        onValueChange={value =>
-                                            handleSimulationInputChange(
-                                                "anticipatedFuelType",
-                                                value
-                                            )
-                                        }
-                                    >
-                                        <SelectTrigger>
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {fuelTypes.map(fuel => (
-                                                <SelectItem key={fuel} value={fuel}>
-                                                    {fuel}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label>RF Wind (%)</Label>
-                                    <Input
-                                        type="number"
-                                        step="0.1"
-                                        value={simulationInputs.rfWind}
-                                        onChange={e =>
-                                            handleSimulationInputChange("rfWind", e.target.value)
-                                        }
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label>RF OPS (%)</Label>
-                                    <Input
-                                        type="number"
-                                        step="0.1"
-                                        value={simulationInputs.rfOps}
-                                        onChange={e =>
-                                            handleSimulationInputChange("rfOps", e.target.value)
-                                        }
-                                    />
+                            <div className="space-y-2">
+                                <Label>Anticipated Fuel Type (Yearly)</Label>
+                                <Select
+                                    value={simulationInputs.anticipatedFuelType}
+                                    onValueChange={value =>
+                                        handleSimulationInputChange("anticipatedFuelType", value)
+                                    }
+                                >
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {fuelTypes.map(fuel => (
+                                            <SelectItem key={fuel} value={fuel}>
+                                                {fuel}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label>RF Wind (%)</Label>
+                                        <Input
+                                            type="number"
+                                            step="0.1"
+                                            value={simulationInputs.rfWind}
+                                            onChange={e =>
+                                                handleSimulationInputChange(
+                                                    "rfWind",
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label>RF OPS (%)</Label>
+                                        <Input
+                                            type="number"
+                                            step="0.1"
+                                            value={simulationInputs.rfOps}
+                                            onChange={e =>
+                                                handleSimulationInputChange("rfOps", e.target.value)
+                                            }
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -717,7 +722,7 @@ export function EmissionSimulation() {
     };
 
     return (
-        <div className="flex flex-row gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Vessel & Voyage Inputs */}
             <Card>
                 <CardHeader>
@@ -733,7 +738,7 @@ export function EmissionSimulation() {
                 <CardContent>
                     {/* Voyage Source Selection */}
                     <div className="mb-6 p-4 bg-accent/10 rounded-lg">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2">
                             <div className="space-y-2">
                                 <Label htmlFor="voyageSource">Voyage Source</Label>
                                 <Select
@@ -756,7 +761,7 @@ export function EmissionSimulation() {
                             </div>
 
                             {voyageSource === "planned" && (
-                                <div className="space-y-2">
+                                <div className="space-y-2 -ml-6">
                                     <Label htmlFor="plannedVoyage">Select Planned Voyage</Label>
                                     <Select
                                         value={selectedPlannedVoyage}
