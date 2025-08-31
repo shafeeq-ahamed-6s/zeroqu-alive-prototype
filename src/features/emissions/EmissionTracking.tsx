@@ -43,7 +43,8 @@ export default function EmissionTracking() {
                 <div>
                     <h1 className="text-3xl font-bold text-foreground">Fleet Emissions</h1>
                     <p className="text-muted-foreground">
-                        Monitor emission compliance, run simulations, and generate reports for regulatory requirements
+                        Monitor emission compliance, run simulations, and generate reports for
+                        regulatory requirements
                     </p>
                 </div>
                 {/* Header with Create Button */}
