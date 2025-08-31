@@ -65,7 +65,7 @@ type SimulatorType = "estimated-cii" | "bio-cii" | "eu-ets" | "fuel-eu-ghg";
 export function EmissionSimulation() {
     const [voyageSource, setVoyageSource] = useState<"new" | "planned">("new");
     const [selectedPlannedVoyage, setSelectedPlannedVoyage] = useState<string>("");
-    
+
     const [vesselData, setVesselData] = useState<VesselData>({
         imo: "",
         name: "",
@@ -323,7 +323,7 @@ export function EmissionSimulation() {
         },
         {
             id: "bio-cii" as SimulatorType,
-            title: "Bio CII Planner",
+            title: "Bio CII",
             icon: Leaf,
             color: "bg-green-500/10 border-green-500/20",
             iconColor: "text-green-500",
@@ -384,7 +384,9 @@ export function EmissionSimulation() {
                             <h3 className="text-lg font-medium text-card-foreground">Results</h3>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="p-4 bg-accent/10 rounded-lg">
-                                    <div className="text-sm text-muted-foreground">Attained CII</div>
+                                    <div className="text-sm text-muted-foreground">
+                                        Attained CII
+                                    </div>
                                     <div className="text-xl font-bold text-card-foreground">
                                         {results.estimatedCII.attainedCII}
                                     </div>
@@ -425,7 +427,7 @@ export function EmissionSimulation() {
                             <h3 className="text-lg font-medium text-card-foreground">
                                 Bio Fuel Parameters
                             </h3>
-                            <div className="space-y-4">
+                            <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>Select Biofuel Supply</Label>
                                     <Select
@@ -490,7 +492,9 @@ export function EmissionSimulation() {
                             </h3>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="p-4 bg-green-500/10 rounded-lg">
-                                    <div className="text-sm text-muted-foreground">Corrected CII</div>
+                                    <div className="text-sm text-muted-foreground">
+                                        Corrected CII
+                                    </div>
                                     <div className="text-xl font-bold text-green-600">
                                         {results.bioCII.correctedCII}
                                     </div>
@@ -508,7 +512,9 @@ export function EmissionSimulation() {
                                     </div>
                                 </div>
                                 <div className="p-4 bg-accent/10 rounded-lg">
-                                    <div className="text-sm text-muted-foreground">Original CII</div>
+                                    <div className="text-sm text-muted-foreground">
+                                        Original CII
+                                    </div>
                                     <div className="text-xl font-bold text-card-foreground">
                                         {results.bioCII.originalCII}
                                     </div>
@@ -525,7 +531,7 @@ export function EmissionSimulation() {
                             <h3 className="text-lg font-medium text-card-foreground">
                                 EU ETS Parameters
                             </h3>
-                            <div className="space-y-4">
+                            <div className="space-y-4 grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>Reporting Year</Label>
                                     <Select
@@ -587,7 +593,9 @@ export function EmissionSimulation() {
                             </h3>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="p-4 bg-blue-500/10 rounded-lg">
-                                    <div className="text-sm text-muted-foreground">EUAs Exposure</div>
+                                    <div className="text-sm text-muted-foreground">
+                                        EUAs Exposure
+                                    </div>
                                     <div className="text-xl font-bold text-blue-600">
                                         {results.euETS.euasExposure}
                                     </div>
@@ -628,13 +636,16 @@ export function EmissionSimulation() {
                             <h3 className="text-lg font-medium text-card-foreground">
                                 Fuel EU GHG Parameters
                             </h3>
-                            <div className="space-y-4">
+                            <div className="space-y-4 grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>Anticipated Fuel Type (Yearly)</Label>
                                     <Select
                                         value={simulationInputs.anticipatedFuelType}
                                         onValueChange={value =>
-                                            handleSimulationInputChange("anticipatedFuelType", value)
+                                            handleSimulationInputChange(
+                                                "anticipatedFuelType",
+                                                value
+                                            )
                                         }
                                     >
                                         <SelectTrigger>
@@ -680,7 +691,9 @@ export function EmissionSimulation() {
                             </h3>
                             <div className="grid grid-cols-1 gap-4">
                                 <div className="p-4 bg-purple-500/10 rounded-lg">
-                                    <div className="text-sm text-muted-foreground">GHG Intensity</div>
+                                    <div className="text-sm text-muted-foreground">
+                                        GHG Intensity
+                                    </div>
                                     <div className="text-xl font-bold text-purple-600">
                                         {results.fuelEUGHG.ghgIntensity}
                                     </div>
@@ -704,7 +717,7 @@ export function EmissionSimulation() {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="flex flex-row gap-4">
             {/* Vessel & Voyage Inputs */}
             <Card>
                 <CardHeader>
@@ -713,7 +726,8 @@ export function EmissionSimulation() {
                         Vessel & Voyage Inputs
                     </CardTitle>
                     <CardDescription>
-                        Select from planned voyages or enter new vessel details and voyage information
+                        Select from planned voyages or enter new vessel details and voyage
+                        information
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -734,7 +748,9 @@ export function EmissionSimulation() {
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="new">Plan New Voyage</SelectItem>
-                                        <SelectItem value="planned">Select Existing Voyage</SelectItem>
+                                        <SelectItem value="planned">
+                                            Select Existing Voyage
+                                        </SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -783,7 +799,9 @@ export function EmissionSimulation() {
                                 onChange={e => handleVesselInputChange("imo", e.target.value)}
                                 placeholder="9000002"
                                 disabled={isFieldDisabled}
-                                className={isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""}
+                                className={
+                                    isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                }
                             />
                         </div>
 
@@ -795,7 +813,9 @@ export function EmissionSimulation() {
                                 onChange={e => handleVesselInputChange("name", e.target.value)}
                                 placeholder="Demo 3"
                                 disabled={isFieldDisabled}
-                                className={isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""}
+                                className={
+                                    isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                }
                             />
                         </div>
 
@@ -834,7 +854,9 @@ export function EmissionSimulation() {
                                 }
                                 placeholder="55000"
                                 disabled={isFieldDisabled}
-                                className={isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""}
+                                className={
+                                    isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                }
                             />
                         </div>
 
@@ -848,7 +870,9 @@ export function EmissionSimulation() {
                                 }
                                 placeholder="SGSIN"
                                 disabled={isFieldDisabled}
-                                className={isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""}
+                                className={
+                                    isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                }
                             />
                         </div>
 
@@ -862,7 +886,9 @@ export function EmissionSimulation() {
                                 }
                                 placeholder="NLRTM"
                                 disabled={isFieldDisabled}
-                                className={isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""}
+                                className={
+                                    isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                }
                             />
                         </div>
 
@@ -877,7 +903,9 @@ export function EmissionSimulation() {
                                 }
                                 placeholder="12500"
                                 disabled={isFieldDisabled}
-                                className={isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""}
+                                className={
+                                    isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                }
                             />
                         </div>
 
@@ -890,7 +918,9 @@ export function EmissionSimulation() {
                                 onChange={e => handleVesselInputChange("seaHours", e.target.value)}
                                 placeholder="850"
                                 disabled={isFieldDisabled}
-                                className={isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""}
+                                className={
+                                    isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                }
                             />
                         </div>
 
@@ -903,7 +933,9 @@ export function EmissionSimulation() {
                                 onChange={e => handleVesselInputChange("portHours", e.target.value)}
                                 placeholder="120"
                                 disabled={isFieldDisabled}
-                                className={isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""}
+                                className={
+                                    isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                }
                             />
                         </div>
                     </div>
@@ -958,7 +990,9 @@ export function EmissionSimulation() {
                                         placeholder="0.0"
                                         disabled={isFieldDisabled}
                                         className={
-                                            isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                            isFieldDisabled
+                                                ? "bg-muted/50 text-muted-foreground"
+                                                : ""
                                         }
                                     />
                                 </div>
@@ -1007,12 +1041,35 @@ export function EmissionSimulation() {
                                         placeholder="0.0"
                                         disabled={isFieldDisabled}
                                         className={
-                                            isFieldDisabled ? "bg-muted/50 text-muted-foreground" : ""
+                                            isFieldDisabled
+                                                ? "bg-muted/50 text-muted-foreground"
+                                                : ""
                                         }
                                     />
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    {/* Run Simulation Button */}
+                    <div className="flex justify-center mt-8">
+                        <Button
+                            onClick={simulateResults}
+                            disabled={isSimulating}
+                            className="px-8 py-3 text-lg"
+                        >
+                            {isSimulating ? (
+                                <>
+                                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                    Simulating...
+                                </>
+                            ) : (
+                                <>
+                                    <Calculator className="h-5 w-5 mr-2" />
+                                    Run Simulation
+                                </>
+                            )}
+                        </Button>
                     </div>
                 </CardContent>
             </Card>
@@ -1040,27 +1097,18 @@ export function EmissionSimulation() {
                                         : "border-border hover:bg-accent/5"
                                 }`}
                             >
-                                <div className="flex items-center space-x-3 mb-3">
+                                <div className="flex flex-col justify-between items-center text-center gap-2">
                                     <div
                                         className={`p-2 rounded-lg ${simulator.iconColor} bg-current/10`}
                                     >
-                                        <simulator.icon className={`h-5 w-5 ${simulator.iconColor}`} />
+                                        <simulator.icon
+                                            className={`h-5 w-5 ${simulator.iconColor}`}
+                                        />
                                     </div>
-                                    <div className="flex-1 min-w-0">
+                                    <div className="flex-1 min-w-0 ">
                                         <h3 className="font-medium text-card-foreground text-sm">
                                             {simulator.title}
                                         </h3>
-                                    </div>
-                                </div>
-                                <p className="text-xs text-muted-foreground mb-3">
-                                    {simulator.description}
-                                </p>
-                                <div className="space-y-1">
-                                    <div className="text-xs text-muted-foreground">
-                                        {simulator.primaryLabel}
-                                    </div>
-                                    <div className="text-lg font-bold text-card-foreground">
-                                        {simulator.primaryMetric}
                                     </div>
                                 </div>
                             </div>
@@ -1095,27 +1143,6 @@ export function EmissionSimulation() {
                         </div>
 
                         {renderDetailView()}
-                    </div>
-
-                    {/* Run Simulation Button */}
-                    <div className="flex justify-center mt-8">
-                        <Button
-                            onClick={simulateResults}
-                            disabled={isSimulating}
-                            className="px-8 py-3 text-lg"
-                        >
-                            {isSimulating ? (
-                                <>
-                                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                                    Simulating...
-                                </>
-                            ) : (
-                                <>
-                                    <Calculator className="h-5 w-5 mr-2" />
-                                    Run Simulation
-                                </>
-                            )}
-                        </Button>
                     </div>
                 </CardContent>
             </Card>
