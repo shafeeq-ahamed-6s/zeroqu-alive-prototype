@@ -5,6 +5,8 @@ import { DailyReportingSection } from "./pages/submitReport";
 import { useLocation, useNavigate } from "react-router";
 import { Voyages } from "./pages/voyages";
 import { ReportsLog } from "./pages/reportsLog";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 export default function DailyReporting() {
     const location = useLocation();
@@ -37,11 +39,26 @@ export default function DailyReporting() {
     });
     return (
         <div className="container mx-auto px-4 py-6 space-y-6">
-            <div className="space-y-2">
-                <h1 className="text-3xl font-bold text-foreground">Voyage Management</h1>
-                <p className="text-muted-foreground">
-                    Monitor vessel operations, submit daily reports, and track performance metrics
-                </p>
+            <div className="space-y-2 flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                    <h1 className="text-3xl font-bold text-foreground">Voyage Management</h1>
+                    <p className="text-muted-foreground">
+                        Monitor vessel operations, submit daily reports, and track performance
+                        metrics
+                    </p>
+                </div>
+                {/* Header with Create Button */}
+                <div className="flex flex-row items-center">
+                    <Button
+                        onClick={() =>
+                            (window.location.href = "/performance/voyage-management#voyages")
+                        }
+                        className="flex items-center gap-2"
+                    >
+                        <Plus className="h-4 w-4" />
+                        Create Voyage
+                    </Button>
+                </div>
             </div>
 
             <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">

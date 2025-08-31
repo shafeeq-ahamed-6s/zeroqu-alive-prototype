@@ -412,25 +412,6 @@ export function Voyages() {
 
     return (
         <div className="space-y-6">
-            {/* Header with Create Button */}
-            <div className="flex items-center justify-between">
-                <div>
-                    <h2 className="text-2xl font-semibold text-card-foreground">
-                        Voyage & Port Management
-                    </h2>
-                    <p className="text-muted-foreground">
-                        Create and manage vessel voyages with integrated port tracking
-                    </p>
-                </div>
-                <Button
-                    onClick={() => setShowCreateDialog(true)}
-                    className="flex items-center gap-2"
-                >
-                    <Plus className="h-4 w-4" />
-                    Create Voyage
-                </Button>
-            </div>
-
             {/* Voyages Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {voyages.map(voyage => (
